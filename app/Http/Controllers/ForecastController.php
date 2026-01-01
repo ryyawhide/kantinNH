@@ -37,6 +37,14 @@ class ForecastController extends Controller
                 'periode' => 'required|in:3,6,9,12'
             ]);
 
+            $user = auth()->user();
+            if (!$user) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'User not authenticated'
+                ], 401);
+            }
+
             $periode_bulan = intval($validated['periode']);
 
             // Periode data: 12 bulan terakhir
@@ -94,7 +102,7 @@ class ForecastController extends Controller
                         'rata_rata_penjualan' => round($rata_rata_keluar, 2),
                         'prediksi_stok' => (int)$prediksi_stok,
                         'rekomendasi_pembelian' => $rekomendasi_pembelian,
-                        'user_id' => auth()->user()->id
+                        'user_id' => $user->id
                     ]);
                     $updated++;
                 } else {
@@ -107,7 +115,7 @@ class ForecastController extends Controller
                         'rata_rata_penjualan' => round($rata_rata_keluar, 2),
                         'prediksi_stok' => (int)$prediksi_stok,
                         'rekomendasi_pembelian' => $rekomendasi_pembelian,
-                        'user_id' => auth()->user()->id
+                        'user_id' => $user->id
                     ]);
                     $created++;
                 }

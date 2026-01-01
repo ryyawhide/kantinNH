@@ -12,6 +12,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        $this->call([
+            RoleSeeder::class,
+            UserSeeder::class,
+            JenisSeeder::class,
+            SatuanSeeder::class,
+            SupplierSeeder::class,
+            CustomerSeeder::class,
+            BarangSeeder::class,
+            BarangMasukSeeder::class,
+            BarangKeluarSeeder::class,
+            // ActivityLogSeeder::class, // Uncomment after filling with all data
+        ]);
     }
 }
