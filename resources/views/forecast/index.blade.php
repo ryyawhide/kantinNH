@@ -478,6 +478,9 @@ $(document).ready(function() {
     $('#forecast_table').DataTable({
         paging: true,
         responsive: true,
+        language: {
+            emptyTable: ""
+        },
         columnDefs: [
             {
                 responsivePriority: 1,
@@ -543,26 +546,48 @@ $(document).ready(function() {
             success: function(response) {
                 let counter = 1;
                 $('#forecast_table').DataTable().clear();
-                $.each(response.data, function(key, value) {
-                    let row = `
+                if (response.data.length > 0) {
+                    $.each(response.data, function(key, value) {
+                        let row = `
+                            <tr>
+                                <td>${counter++}</td>
+                                <td><strong>${value.nama_barang}</strong></td>
+                                <td>${value.periode_bulan} Bulan</td>
+                                <td>${value.periode}</td>
+                                <td>${value.rata_rata_penjualan}</td>
+                                <td><span class="badge badge-info">${value.prediksi_stok}</span></td>
+                                <td><span class="badge badge-warning">${value.rekomendasi_pembelian}</span></td>
+                                <td>${value.user}</td>
+                                <td>
+                                    <button class="btn btn-danger btn-delete" data-id="${value.id}">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        `;
+                        $('#forecast_table').DataTable().row.add($(row));
+                    });
+                } else {
+                    let emptyRow = `
                         <tr>
-                            <td>${counter++}</td>
-                            <td><strong>${value.nama_barang}</strong></td>
-                            <td>${value.periode_bulan} Bulan</td>
-                            <td>${value.periode}</td>
-                            <td>${value.rata_rata_penjualan}</td>
-                            <td><span class="badge badge-info">${value.prediksi_stok}</span></td>
-                            <td><span class="badge badge-warning">${value.rekomendasi_pembelian}</span></td>
-                            <td>${value.user}</td>
-                            <td>
-                                <button class="btn btn-danger btn-delete" data-id="${value.id}">
-                                    <i class="fas fa-trash"></i>
-                                </button>
+                            <td class="text-center py-5" colspan="8" style="border: none;">
+                                <i class="fas fa-chart-line fa-4x text-muted mb-3"></i>
+                                <h5 class="text-muted">Tidak ada data forecast</h5>
+                                <p class="text-muted">Belum ada forecast yang dihasilkan untuk periode ini.</p>
                             </td>
+                            <td style="border: none;"></td>
+                            <td style="border: none;"></td>
+                            <td style="border: none;"></td>
+                            <td style="border: none;"></td>
+                            <td style="border: none;"></td>
+                            <td style="border: none;"></td>
+                            <td style="border: none;"></td>
+                            <td style="border: none;"></td>
                         </tr>
                     `;
-                    $('#forecast_table').DataTable().row.add($(row)).draw();
-                });
+                    $('#forecast_table').DataTable().row.add($(emptyRow));
+                }
+                $('#forecast_table').DataTable().draw();
             }
         });
     }
