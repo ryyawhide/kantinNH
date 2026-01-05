@@ -16,9 +16,8 @@
 
     <style>
         body {
-            background-image: url('/storage/background-login.png'); /* ganti sesuai lokasi gambarmu */
-            background-size: cover;
-            background-position: center;
+            margin: 0;
+            background: transparent;
         }
     </style>
 </head>

@@ -80,8 +80,14 @@
         }
 
         function init() {
+            let particleCount = 70;
+            if (window.innerWidth < 640) {
+                particleCount = 30;
+            } else if (window.innerWidth < 480) {
+                particleCount = 15;
+            }
             particles = [];
-            for (let i = 0; i < 70; i++) {
+            for (let i = 0; i < particleCount; i++) {
                 particles.push(new Particle());
             }
         }
@@ -182,13 +188,15 @@
         input[type="email"],
         input[type="password"] {
             width: 100%;
-            padding: 0.75rem 0.9rem;
+            height: 50px;
+            padding: 1rem 1rem;
             border-radius: 0.5rem;
             background-color: #f8fafc;
             border: 1px solid #cbd5e1;
-            font-size: 0.95rem;
+            font-size: 1rem;
             color: #1e293b;
             transition: all 0.25s ease;
+            box-sizing: border-box;
         }
 
         input[type="email"]:focus,
@@ -251,10 +259,117 @@
         @media (max-width: 640px) {
             .login-container {
                 padding: 2.5rem 1.5rem;
+                max-width: 90%;
+                margin: 0 auto;
             }
 
             .login-header h1 {
                 font-size: 1.75rem;
+            }
+
+            .login-header p {
+                font-size: 0.8rem;
+            }
+
+            input[type="email"],
+            input[type="password"] {
+                height: 48px;
+                padding: 0.9rem 0.9rem;
+                font-size: 0.95rem;
+            }
+
+            button[type="submit"] {
+                padding: 0.7rem;
+                font-size: 0.95rem;
+            }
+
+            .remember-label {
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .login-container {
+                padding: 2rem 1.2rem;
+                max-width: 95%;
+                margin: 0 auto;
+                border-radius: 1rem;
+            }
+
+            .login-header h1 {
+                font-size: 1.5rem;
+            }
+
+            .login-header p {
+                font-size: 0.75rem;
+            }
+
+            label {
+                font-size: 0.8rem;
+            }
+
+            input[type="email"],
+            input[type="password"] {
+                height: 45px;
+                padding: 0.8rem 0.8rem;
+                font-size: 0.9rem;
+            }
+
+            button[type="submit"] {
+                padding: 0.6rem;
+                font-size: 0.9rem;
+                margin-top: 1rem;
+            }
+
+            .remember-label {
+                font-size: 0.75rem;
+                gap: 0.4rem;
+            }
+
+            input[type="checkbox"] {
+                width: 14px;
+                height: 14px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .login-container {
+                padding: 1.5rem 1rem;
+                max-width: 98%;
+                margin: 0 auto;
+            }
+
+            .login-header h1 {
+                font-size: 1.3rem;
+            }
+
+            .login-header p {
+                font-size: 0.7rem;
+            }
+
+            label {
+                font-size: 0.75rem;
+            }
+
+            input[type="email"],
+            input[type="password"] {
+                height: 42px;
+                padding: 0.7rem 0.7rem;
+                font-size: 0.85rem;
+            }
+
+            button[type="submit"] {
+                padding: 0.5rem;
+                font-size: 0.85rem;
+            }
+
+            .remember-label {
+                font-size: 0.7rem;
+            }
+
+            input[type="checkbox"] {
+                width: 12px;
+                height: 12px;
             }
         }
     </style>

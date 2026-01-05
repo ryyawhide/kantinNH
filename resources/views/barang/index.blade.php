@@ -104,10 +104,11 @@
                     $('#table_id').DataTable().clear();
                     $.each(response.data, function(key, value) {
                         let stok = value.stok != null ? value.stok : "Kosong";
+                        let gambarSrc = value.gambar ? `/storage/${value.gambar}` : 'https://via.placeholder.com/150x150?text=No+Image';
                         let barang = `
                 <tr class="barang-row" id="index_${value.id}">
                     <td>${counter++}</td>
-                    <td><img src="/storage/${value.gambar}" alt="gambar Barang" class="barang-img"></td>
+                    <td><img src="${gambarSrc}" alt="gambar Barang" class="barang-img" onerror="this.src='https://via.placeholder.com/150x150?text=No+Image'"></td>
                     <td><strong>${value.kode_barang}</strong></td>
                     <td>${value.nama_barang}</td>
                     <td><span class="badge badge-info">${stok}</span></td>

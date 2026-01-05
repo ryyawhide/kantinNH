@@ -334,6 +334,82 @@
             font-size: 0.75rem;
         }
     }
+
+    @media (max-width: 480px) {
+        .section-header {
+            padding: 8px 12px;
+            margin-bottom: 10px;
+        }
+
+        .section-header h1 {
+            font-size: 1rem;
+        }
+
+        .card-statistic-1 {
+            min-height: 80px;
+            margin-bottom: 10px;
+        }
+
+        .card-statistic-1 .card-icon {
+            width: 40px;
+            height: 40px;
+            font-size: 16px;
+            margin: 8px;
+        }
+
+        .card-statistic-1 .card-header h4 {
+            font-size: 0.7rem;
+        }
+
+        .card-statistic-1 .card-body {
+            font-size: 0.9rem;
+        }
+
+        .card-statistic-1 .card-wrap {
+            padding: 5px 10px;
+        }
+
+        .card {
+            margin-bottom: 10px;
+        }
+
+        .card .card-header {
+            padding: 10px;
+            font-size: 0.95rem;
+        }
+
+        .card .card-body {
+            padding: 10px;
+        }
+
+        .btn {
+            padding: 6px 10px;
+            font-size: 0.85rem;
+        }
+
+        .form-control {
+            padding: 6px 10px;
+            font-size: 0.9rem;
+        }
+
+        .table {
+            font-size: 0.7rem;
+        }
+
+        .table th,
+        .table td {
+            padding: 4px 6px;
+        }
+
+        .badge {
+            padding: 2px 6px;
+            font-size: 0.65rem;
+        }
+
+        .table-responsive {
+            font-size: 0.8rem;
+        }
+    }
 </style>
 
 <div class="section-header">
@@ -493,6 +569,31 @@ $(document).ready(function() {
             {
                 responsivePriority: 3,
                 targets: 6
+            },
+            {
+                responsivePriority: 4,
+                targets: 5
+            },
+            {
+                responsivePriority: 5,
+                targets: 4
+            },
+            {
+                responsivePriority: 6,
+                targets: 3
+            },
+            {
+                responsivePriority: 7,
+                targets: 2
+            },
+            {
+                responsivePriority: 8,
+                targets: 1
+            },
+            {
+                responsivePriority: 9,
+                targets: 7,
+                className: 'none'  // Hide "Dibuat Oleh" on small screens
             }
         ]
     });
